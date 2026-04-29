@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Sweet Bliss Cake Shop</title>
+<meta name="description" content="Learn about Sweet Bliss — our story, our team and our commitment to quality artisan baking.">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* About sections */
+.about-story{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-photos{position:relative;aspect-ratio:1;max-height:480px}
+.ap1,.ap2{position:absolute;overflow:hidden;border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.ap1{width:73%;height:78%;top:0;left:0}
+.ap2{width:52%;height:56%;bottom:0;right:0;border:4px solid var(--cream)}
+.ap1 img,.ap2 img{width:100%;height:100%;object-fit:cover}
+.about-text .section-tag{display:block;text-align:left;margin-bottom:0.5rem}
+.about-text p{color:var(--txt-light);line-height:1.9;font-size:var(--fs-base);margin:0.9rem 0}
+.checks{display:flex;flex-direction:column;gap:0.6rem;margin-top:1.2rem}
+.check{display:flex;align-items:center;gap:10px;font-size:var(--fs-sm);color:var(--txt-light)}
+.check-dot{width:20px;height:20px;background:var(--rose-light);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.65rem;color:var(--rose);font-weight:700}
+
+/* values */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+.val-card{background:#fff;border-radius:var(--r-lg);padding:2rem 1.5rem;box-shadow:var(--shadow);text-align:center}
+.val-icon{font-size:2.4rem;margin-bottom:1rem}
+.val-card h3{font-family:'Playfair Display',serif;font-size:var(--fs-xl);color:var(--choc);margin-bottom:0.6rem}
+.val-card p{font-size:var(--fs-sm);color:var(--txt-light);line-height:1.7}
+
+/* timeline */
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:2.5rem;position:relative}
+.timeline::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:2px;background:var(--warm2)}
+.tl-item{display:flex;gap:1.5rem;padding-bottom:2rem;position:relative}
+.tl-dot{width:56px;height:56px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:var(--fs-sm);font-weight:700;color:#fff;flex-shrink:0;z-index:1;position:relative;border:3px solid var(--cream)}
+.tl-body h4{font-family:'Playfair Display',serif;font-size:var(--fs-lg);color:var(--choc);margin-bottom:0.3rem}
+.tl-body p{font-size:var(--fs-sm);color:var(--txt-light);line-height:1.7;padding-top:0.3rem}
+
+/* team */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.team-card{background:#fff;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow);text-align:center}
+.team-img{aspect-ratio:1;overflow:hidden;background:var(--warm)}
+.team-img img{width:100%;height:100%;object-fit:cover}
+.team-body{padding:1.25rem}
+.team-body h3{font-family:'Playfair Display',serif;font-size:var(--fs-lg);color:var(--choc);margin-bottom:3px}
+.team-body span{font-size:var(--fs-sm);color:var(--rose);font-weight:500}
+.team-body p{font-size:var(--fs-xs);color:var(--txt-light);margin-top:0.5rem;line-height:1.6}
+
+@media(max-width:900px){
+  .about-story{grid-template-columns:1fr}
+  .about-photos{aspect-ratio:4/3;max-height:300px}
+  .values-grid{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .values-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .timeline::before{left:22px}
+  .tl-dot{width:44px;height:44px;font-size:0.7rem}
+}
+@media(max-width:400px){
+  .team-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script>document.addEventListener('DOMContentLoaded', () => buildNav('about'));</script>
+
+<div class="page-hero">
+  <span class="section-tag">Our Story</span>
+  <h1>Baked with Passion,<br>Served with Love</h1>
+  <p>Since 2010, Sweet Bliss has been crafting moments of joy — one cake at a time.</p>
+</div>
+
+<div id="marqueeSlot"></div>
+
+<!-- STORY -->
+<section class="sb-section">
+  <div class="about-story">
+    <div class="about-photos">
+      <div class="ap1"><img src="../imgs/shop.jpg" alt="Sweet Bliss shop interior" loading="lazy"></div>
+      <div class="ap2"><img src="../imgs/shop1.jpg" alt="Cakes on display" loading="lazy"></div>
+    </div>
+    <div class="about-text">
+      <span class="section-tag">Who We Are</span>
+      <h2 class="section-h">A Family Bakery Built on Love</h2>
+      <p>Sweet Bliss was born in a small home kitchen in 2010, when founder Anjali started baking cakes for friends and neighbours. Word spread, orders grew, and in 2013 we opened our first shop.</p>
+      <p>Today we serve hundreds of families with the same care and quality — no preservatives, no shortcuts, just pure handcrafted goodness. Every cake tells a story, and we can't wait to tell yours.</p>
+      <div class="checks">
+        <div class="check"><div class="check-dot">✓</div>100% Fresh — Made to Order Every Day</div>
+        <div class="check"><div class="check-dot">✓</div>Premium Belgian Chocolate</div>
+        <div class="check"><div class="check-dot">✓</div>Custom Designs & Personalised Messages</div>
+        <div class="check"><div class="check-dot">✓</div>FSSAI Certified Kitchen</div>
+        <div class="check"><div class="check-dot">✓</div>Same-Day Delivery Available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="sb-section" style="background:var(--warm);padding-top:4rem;padding-bottom:4rem">
+  <div class="section-center">
+    <span class="section-tag">What We Stand For</span>
+    <h2 class="section-h">Our Values</h2>
+  </div>
+  <div class="values-grid">
+    <div class="val-card"><div class="val-icon">🌿</div><h3>Fresh Always</h3><p>We bake fresh every single day. No frozen stock, no day-old products — only freshly crafted treats reach your table.</p></div>
+    <div class="val-card"><div class="val-icon">❤️</div><h3>Made with Love</h3><p>Every decoration is placed by hand. We treat every order as if it were our own family's celebration.</p></div>
+    <div class="val-card"><div class="val-icon">🎨</div><h3>Creative Artistry</h3><p>Our chefs blend classical techniques with modern design — resulting in cakes that are as beautiful as they are delicious.</p></div>
+  </div>
+</section>
+
+<!-- JOURNEY / TIMELINE -->
+<section class="sb-section">
+  <div class="section-center" style="margin-bottom:0">
+    <span class="section-tag">Our Journey</span>
+    <h2 class="section-h">From Home Kitchen to City Favourite</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-dot">2010</div><div class="tl-body"><h4>A Sweet Beginning</h4><p>Anjali starts baking custom birthday cakes from her home kitchen in Pune, taking orders via word-of-mouth.</p></div></div>
+    <div class="tl-item"><div class="tl-dot">2013</div><div class="tl-body"><h4>First Shop Opens</h4><p>Demand outgrows the home kitchen. Sweet Bliss Bakery opens its first retail store in Koregaon Park.</p></div></div>
+    <div class="tl-item"><div class="tl-dot">2017</div><div class="tl-body"><h4>500+ Happy Customers</h4><p>We hit our 500th customer milestone and launch online ordering via WhatsApp for easy, seamless orders.</p></div></div>
+    <div class="tl-item"><div class="tl-dot">2021</div><div class="tl-body"><h4>Custom Cake Studio</h4><p>We open a dedicated custom cake design studio offering wedding cakes, tier cakes and sculpted designs.</p></div></div>
+    <div class="tl-item"><div class="tl-dot">Now</div><div class="tl-body"><h4>Still Growing, Still Baking</h4><p>80+ cake varieties, same-day delivery across the city, and still every cake made fresh with love — just like day one.</p></div></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="sb-section" style="background:var(--warm);padding-top:4rem;padding-bottom:4rem">
+  <div class="section-center">
+    <span class="section-tag">Meet the Team</span>
+    <h2 class="section-h">The Hands Behind the Magic</h2>
+    <p class="section-sub">A passionate team of bakers, decorators and dreamers — united by a love for cake.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-img"><img src="../imgs/shop2.jpg" alt="Anjali - Founder" loading="lazy"></div>
+      <div class="team-body"><h3>Anjali M.</h3><span>Founder & Head Baker</span><p>14 years of baking experience. Trained in classical French patisserie and modern cake artistry.</p></div>
+    </div>
+    <div class="team-card">
+      <div class="team-img"><img src="../imgs/cake10.jpg" alt="Rohan - Decorator" loading="lazy"></div>
+      <div class="team-body"><h3>Rohan K.</h3><span>Lead Cake Designer</span><p>Specialises in fondant sculptures, floral arrangements and multi-tier wedding cakes.</p></div>
+    </div>
+    <div class="team-card">
+      <div class="team-img"><img src="../imgs/cake4.jpg" alt="Sneha - Chocolatier" loading="lazy"></div>
+      <div class="team-body"><h3>Sneha P.</h3><span>Chocolatier</span><p>Our in-house chocolate expert. Creates all ganaches, tempering and Belgian chocolate decorations.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="footerSlot"></div>
+
+<script src="../js/common.js"></script>
+<script>
+document.getElementById('marqueeSlot').replaceWith(buildMarquee());
+document.getElementById('footerSlot').outerHTML = buildFooter();
+</script>
+</body>
+</html>

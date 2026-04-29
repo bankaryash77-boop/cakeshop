@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu — Sweet Bliss Cake Shop</title>
+<meta name="description" content="Browse our full menu of artisan cakes, cupcakes and celebration treats.">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.cat-bar{display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;margin:2rem 0 1.5rem}
+.cat-btn{
+  background:#fff;color:var(--txt-light);
+  border-radius:50px;padding:8px 20px;
+  font-size:var(--fs-sm);font-weight:500;border:1.5px solid var(--warm2);
+  transition:all 0.2s;
+}
+.cat-btn:hover,.cat-btn.active{background:var(--choc);color:#fff;border-color:var(--choc)}
+.menu-count{text-align:center;color:var(--txt-light);font-size:var(--fs-sm);margin-bottom:1.5rem}
+.sheet-notice{
+  background:var(--rose-light);border:1px solid #f0c8bc;color:var(--rose-dark);
+  font-size:var(--fs-sm);padding:8px 16px;border-radius:50px;
+  text-align:center;max-width:400px;margin:0 auto 1rem;display:none;
+}
+.sheet-notice.show{display:block}
+@media(max-width:480px){
+  .cat-bar{gap:0.45rem}
+  .cat-btn{padding:7px 14px;font-size:0.7rem}
+}
+</style>
+</head>
+<body>
+<script>document.addEventListener('DOMContentLoaded', () => buildNav('menu'));</script>
+
+<div class="page-hero">
+  <span class="section-tag">Our Menu</span>
+  <h1>Every Craving Covered</h1>
+  <p>Tap any cake to see full details. All products are made fresh to order — no preservatives, ever.</p>
+</div>
+
+<div id="marqueeSlot"></div>
+
+<section class="sb-section" style="padding-top:3rem">
+  <div class="cat-bar" id="catBar"></div>
+  <div class="sheet-notice" id="sheetNotice"></div>
+  <div class="menu-count" id="menuCount"></div>
+  <div class="products-grid" id="menuGrid"></div>
+</section>
+
+<div id="footerSlot"></div>
+
+<script src="../js/common.js"></script>
+<script>
+document.getElementById('marqueeSlot').replaceWith(buildMarquee());
+document.getElementById('footerSlot').outerHTML = buildFooter();
+
+let activeCat = 'all';
+
+function getCategories() {
+  const cats = ['all', ...new Set(PRODUCT_CATALOGUE.filter(p => p.active).map(p => p.category))];
+  return cats;
+}
+
+function renderCatBar() {
+  const bar = document.getElementById('catBar');
+  bar.innerHTML = getCategories().map(c =>
+    `<button class="cat-btn${c === activeCat ? ' active' : ''}" onclick="setCat('${c}')">${c === 'all' ? 'All' : c.charAt(0).toUpperCase() + c.slice(1)}</button>`
+  ).join('');
+}
+
+function setCat(c) { activeCat = c; renderCatBar(); renderGrid(); }
+
+function renderGrid() {
+  const list = PRODUCT_CATALOGUE.filter(p => p.active && (activeCat === 'all' || p.category === activeCat));
+  document.getElementById('menuCount').textContent = `Showing ${list.length} item${list.length !== 1 ? 's' : ''}`;
+  const grid = document.getElementById('menuGrid');
+  grid.innerHTML = list.map(p => productCardHTML(p)).join('');
+  grid.querySelectorAll('.p-card').forEach(card => {
+    const id = parseInt(card.dataset.productId);
+    wireAddButton(card, id);
+    card.querySelector('.btn-view')?.addEventListener('click', e => { e.stopPropagation(); openDetailModal(id); });
+  });
+}
+
+renderCatBar();
+renderGrid();
+
+fetchSheetData().then(({ changed }) => {
+  const notice = document.getElementById('sheetNotice');
+  if (changed) {
+    notice.textContent = '✓ Menu updated from Google Sheets';
+    notice.classList.add('show');
+    setTimeout(() => notice.classList.remove('show'), 3000);
+    renderCatBar();
+    renderGrid();
+  }
+});
+</script>
+</body>
+</html>

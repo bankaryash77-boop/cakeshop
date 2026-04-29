@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Bliss — Artisan Cake Shop</title>
+<meta name="description" content="Handcrafted artisan cakes made fresh to order. Custom designs, premium ingredients, same-day delivery.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ── HOME-ONLY STYLES ── */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:3rem;
+  padding:calc(var(--nav-h) + 3rem) 5% 4rem;
+  background:linear-gradient(135deg,var(--cream) 55%,var(--warm) 100%);
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--rose-light);color:var(--rose);
+  font-size:var(--fs-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  padding:5px 13px;border-radius:50px;margin-bottom:1.25rem;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:var(--fs-hero);
+  line-height:1.1;color:var(--choc);margin-bottom:1.1rem;
+}
+.hero h1 em{color:var(--rose);font-style:italic}
+.hero-desc{color:var(--txt-light);font-size:var(--fs-base);line-height:1.85;margin-bottom:1.75rem;max-width:430px}
+.hero-btns{display:flex;gap:0.85rem;flex-wrap:wrap;margin-bottom:2.25rem}
+.hero-stats{display:flex;gap:1.75rem;padding-top:1.75rem;border-top:1px solid var(--warm2)}
+.hero-stat h4{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,1.9rem);color:var(--rose);line-height:1}
+.hero-stat p{font-size:var(--fs-xs);color:var(--txt-light);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px}
+.hero-visual{position:relative}
+.hero-img-wrap{border-radius:28px 28px 90px 28px;overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/5}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover}
+.hero-pill{
+  position:absolute;background:#fff;border-radius:13px;
+  padding:11px 15px;box-shadow:0 6px 22px rgba(61,28,12,0.12);
+  display:flex;align-items:center;gap:9px;
+  animation:float 4s ease-in-out infinite;
+}
+.hero-pill.p1{bottom:-12px;left:-20px}
+.hero-pill.p2{top:20px;right:-16px;animation-delay:2s}
+.hero-pill-icon{width:34px;height:34px;background:var(--rose-light);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.hp-small{display:block;font-size:var(--fs-xs);color:var(--txt-light);text-transform:uppercase;letter-spacing:0.06em}
+.hp-big{display:block;font-size:var(--fs-base);font-weight:700;color:var(--choc)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* home menu preview */
+.home-menu{background:var(--warm);padding:5rem 5%}
+.home-menu-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+
+/* testimonials */
+.testimonials{padding:5rem 5%;background:var(--cream)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+.test-card{background:#fff;border-radius:var(--r-lg);padding:1.5rem;box-shadow:var(--shadow)}
+.test-stars{color:var(--gold);font-size:var(--fs-base);margin-bottom:0.6rem}
+.test-text{color:var(--txt-light);font-size:var(--fs-sm);line-height:1.75;margin-bottom:1rem}
+.test-author{display:flex;align-items:center;gap:0.75rem}
+.test-avatar{width:40px;height:40px;border-radius:50%;background:var(--rose-light);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.test-name{font-weight:600;font-size:var(--fs-base);color:var(--choc)}
+.test-sub{font-size:var(--fs-xs);color:var(--txt-light)}
+
+/* CTA BANNER */
+.cta-banner{
+  background:var(--choc);padding:4rem 5%;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;text-align:center;
+}
+.cta-banner h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:#fff}
+.cta-banner p{color:rgba(255,255,255,0.65);font-size:var(--fs-base);margin-top:0.5rem}
+.cta-left{flex:1;text-align:left}
+
+/* Responsive home */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:2rem;text-align:center;padding-top:calc(var(--nav-h) + 2rem)}
+  .hero-desc{margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+  .hero-stats{justify-content:center}
+  .hero-pill.p1,.hero-pill.p2{display:none}
+  .hero-img-wrap{border-radius:var(--r-lg);aspect-ratio:16/9;max-height:360px}
+  .test-grid{grid-template-columns:1fr 1fr}
+  .cta-left{text-align:center}
+  .cta-banner{justify-content:center}
+}
+@media(max-width:600px){
+  .test-grid{grid-template-columns:1fr}
+  .hero-img-wrap{aspect-ratio:4/3;max-height:280px}
+}
+@media(max-width:480px){
+  .hero{padding-left:3%;padding-right:3%}
+  .hero h1{font-size:1.95rem}
+  .hero-desc{font-size:var(--fs-sm)}
+  .hero-stats{gap:1.1rem}
+  .hero-stat h4{font-size:1.4rem}
+  .home-menu{padding:3rem 3%}
+  .home-menu-head{gap:0.75rem}
+}
+</style>
+</head>
+<body>
+
+<script>
+// Nav injected by common.js buildNav()
+document.addEventListener('DOMContentLoaded', () => buildNav('home'));
+</script>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">🎂 Artisan Cakes Since 2010</div>
+    <h1>Every Bite Tells a <em>Sweet Story</em></h1>
+    <p class="hero-desc">Handcrafted with love, made to order. From rich chocolate layers to delicate floral creations — find your perfect cake for every occasion.</p>
+    <div class="hero-btns">
+      <a href="pages/menu.html" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 46 46" fill="none"><path d="M14.2 9L10 14.6V34.2C10 34.94 10.3 35.65 10.82 36.18C11.35 36.7 12.06 37 12.8 37H32.4C33.14 37 33.86 36.7 34.38 36.18C34.9 35.65 35.2 34.94 35.2 34.2V14.6L31 9H14.2Z" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 14.6H35.2" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Explore Menu
+      </a>
+      <a href="https://wa.me/919876543210" target="_blank" class="btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.093.539 4.061 1.487 5.774L0 24l6.384-1.464A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.859 0-3.6-.498-5.1-1.361l-.364-.217-3.791.869.899-3.695-.238-.381A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Order via WhatsApp
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><h4>500+</h4><p>Happy Clients</p></div>
+      <div class="hero-stat"><h4>80+</h4><p>Cake Varieties</p></div>
+      <div class="hero-stat"><h4>14yr</h4><p>Experience</p></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-wrap">
+      <img src="imgs/hero.jpg" alt="Beautiful artisan celebration cake" loading="eager">
+    </div>
+    <div class="hero-pill p1">
+      <div class="hero-pill-icon">⭐</div>
+      <div><span class="hp-small">Rating</span><span class="hp-big">4.9 / 5.0</span></div>
+    </div>
+    <div class="hero-pill p2">
+      <div class="hero-pill-icon">🚚</div>
+      <div><span class="hp-small">Delivery</span><span class="hp-big">Same Day</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE (injected) -->
+<div id="marqueeSlot"></div>
+
+<!-- FEATURES BAR -->
+<div class="features-bar">
+  <div class="feat-item"><div class="feat-icon"><img src="imgs/truck.svg" alt="Delivery"></div><div class="feat-text"><strong>Free Delivery</strong><span>On orders over ₹1000</span></div></div>
+  <div class="feat-item"><div class="feat-icon"><img src="imgs/return.svg" alt="Returns"></div><div class="feat-text"><strong>Easy Returns</strong><span>If not satisfied</span></div></div>
+  <div class="feat-item"><div class="feat-icon"><img src="imgs/support.svg" alt="Support"></div><div class="feat-text"><strong>24/7 Support</strong><span>WhatsApp anytime</span></div></div>
+  <div class="feat-item"><div class="feat-icon"><img src="imgs/bag.svg" alt="Secure"></div><div class="feat-text"><strong>Secure Orders</strong><span>Confirmed via WhatsApp</span></div></div>
+</div>
+
+<!-- HOME MENU PREVIEW -->
+<section class="home-menu">
+  <div class="home-menu-head">
+    <div>
+      <span class="section-tag">Our Menu</span>
+      <h2 class="section-h">Popular Picks</h2>
+    </div>
+    <a href="pages/menu.html" class="btn-outline btn-sm">See All →</a>
+  </div>
+  <div class="products-grid" id="homeGrid"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-center">
+    <span class="section-tag">Reviews</span>
+    <h2 class="section-h">What Customers Say</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">"Ordered a Black Forest cake for my daughter's birthday — it was absolutely stunning and tasted even better! Everyone was amazed."</p><div class="test-author"><div class="test-avatar">👩</div><div><div class="test-name">Priya Sharma</div><div class="test-sub">Birthday Order</div></div></div></div>
+    <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">"The Ferrero Hazelnut cupcakes were out of this world. Fresh, beautiful, and delivered on time. Will definitely order again!"</p><div class="test-author"><div class="test-avatar">👨</div><div><div class="test-name">Arjun Patel</div><div class="test-sub">Anniversary Order</div></div></div></div>
+    <div class="test-card"><div class="test-stars">★★★★⭐</div><p class="test-text">"Custom cake for our office party — the team loved it. Ordering via WhatsApp was so easy. Highly recommend Sweet Bliss!"</p><div class="test-author"><div class="test-avatar">👩</div><div><div class="test-name">Meera Joshi</div><div class="test-sub">Corporate Order</div></div></div></div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-left">
+    <h2>Have a Custom Cake in Mind?</h2>
+    <p>Tell us your idea — we'll bake your dream cake!</p>
+  </div>
+  <a href="https://wa.me/919876543210" target="_blank" class="btn-primary" style="background:#25D366;flex-shrink:0">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.093.539 4.061 1.487 5.774L0 24l6.384-1.464A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.859 0-3.6-.498-5.1-1.361l-.364-.217-3.791.869.899-3.695-.238-.381A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Chat on WhatsApp
+  </a>
+</div>
+
+<!-- FOOTER (injected) -->
+<div id="footerSlot"></div>
+
+<script src="js/common.js"></script>
+<script>
+document.getElementById('marqueeSlot').replaceWith(buildMarquee());
+document.getElementById('footerSlot').outerHTML = buildFooter();
+
+function renderGrid() {
+  const featured = PRODUCT_CATALOGUE.filter(p => p.active).slice(0, 8);
+  const grid = document.getElementById('homeGrid');
+  grid.innerHTML = featured.map(p => productCardHTML(p)).join('');
+  grid.querySelectorAll('.p-card').forEach(card => {
+    const id = parseInt(card.dataset.productId);
+    wireAddButton(card, id);
+    card.querySelector('.btn-view')?.addEventListener('click', e => { e.stopPropagation(); openDetailModal(id); });
+  });
+}
+renderGrid();
+</script>
+</body>
+</html>
