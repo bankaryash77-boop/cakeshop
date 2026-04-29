@@ -6,7 +6,7 @@
 const WHATSAPP_NUMBER = '919876543210';   // ← change to your number
 const SHOP_NAME       = 'Sweet Bliss Cake Shop';
 const CURRENCY        = '₹';
-const SHEETS_CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCy2hXpxVrHdWYX0urihEwKyFaqJ1lpWv_FEHua3OxBttA1MOFD2QwnTQgcRl-Zpt9uqV1n5mR_VMe/pub?gid=2016253672&single=true&output=csv';
+const SHEETS_CSV_URL  = '';
 
 /* ── PATH HELPER ─────────────────────────────────────────── */
 /* Works whether file is in root or /pages/ subfolder */
